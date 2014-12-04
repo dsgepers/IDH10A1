@@ -66,6 +66,9 @@ public class RestaurantPopulatorServiceImpl implements RestaurantPopulatorServic
 			Arrays.<FoodCategory>asList(new FoodCategory[]{foodCats.get(5)}));
 		createDrink("coffee", "coffee.jpg", 1, Drink.Size.MEDIUM,
 			Arrays.<FoodCategory>asList(new FoodCategory[]{foodCats.get(6)}));
+		BloodyMary bloodyMary = new BloodyMary();
+		createDrink(bloodyMary.getDescription(),"", 1, Drink.Size.SMALL,
+				Arrays.<FoodCategory>asList(new FoodCategory[]{foodCats.get(6)}));
 		
 		byte[] photo = new byte[]{127,-128,0};
 		createCustomer("piet", "bakker", new DateTime(), 1, "description", photo);
