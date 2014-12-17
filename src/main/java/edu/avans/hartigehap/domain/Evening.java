@@ -1,11 +1,17 @@
 package edu.avans.hartigehap.domain;
 
-public class Evening implements Period {
+import javax.persistence.Entity;
 
+import org.joda.time.DateTime;
+
+@Entity
+public class Evening implements CalendarPeriod {
+
+	private DateTime date;
+	
 	@Override
-	public void setDate() {
-		// TODO Auto-generated method stub
-
+	public void setDate(DateTime date) {
+		this.date = date;
 	}
 
 }
