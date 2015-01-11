@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import org.joda.time.DateTime;
 
 @Entity
-public class Evening extends CalendarPeriod {
+public class Evening extends IPeriod {
 
 	private DateTime date;
 	

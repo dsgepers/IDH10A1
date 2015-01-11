@@ -17,8 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Reservation extends DomainObject {
 
-	@OneToMany(mappedBy="PERIOD")
-	private List<CalendarPeriod> periods;
+	@OneToMany(mappedBy="RESERVATION")
+	private List<IPeriod> periods;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="CUSTOMER_ID")
@@ -32,7 +32,7 @@ public class Reservation extends DomainObject {
 	@JoinColumn(name="STATUS_ID")
 	private IReservationStatus status;
 
-	public void addPeriod(CalendarPeriod period)
+	public void addPeriod(IPeriod period)
 	{
 		this.periods.add(period);
 	}

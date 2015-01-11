@@ -7,7 +7,7 @@ import org.joda.time.Interval;
 
 public class PeriodFactory {
 
-	public List<CalendarPeriod> buildPeriod(DateTime start, DateTime end) {
+	public List<IPeriod> buildPeriod(DateTime start, DateTime end) {
 
 		Interval interval = new Interval(start, end);
 		
