@@ -9,6 +9,10 @@ public class Afternoon extends IPeriod {
 
 	private DateTime date;
 	
+	public Afternoon (DateTime date) {
+		this.date = date;
+	}
+	
 	@Override
 	public void setDate(DateTime date) {
 		this.date = date;

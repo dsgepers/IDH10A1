@@ -14,6 +14,7 @@ public abstract class IPeriod {
 	@Id
 	private Long id;
 	
+	@ManyToOne
 	private Reservation RESERVATION;
 	
 	public abstract void setDate(DateTime date);
