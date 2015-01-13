@@ -17,8 +17,8 @@ public class PeriodFactory {
 		
 		boolean firstDay = true;
 		boolean lastDay = false;
-		for ( int i = reservedDays - 1; i > 0; i--) {
-			if (i == 1) 
+		for ( int i = reservedDays; i >= 0; i--) {
+			if (i == 0) 
 				lastDay = true;
 			
 			if (firstDay) {
@@ -45,9 +45,8 @@ public class PeriodFactory {
 				} else if (isEvening(startHour)) {
 					periods.add(new Evening(start));
 				}
-					continue;
 			}
-			if (lastDay) {
+			else if (lastDay) {
 				if (isMorning(endHour)) {
 					periods.add(new Morning(start));
 				} else if (isAfternoon(endHour)) {
