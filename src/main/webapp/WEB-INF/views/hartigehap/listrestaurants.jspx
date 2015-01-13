@@ -22,7 +22,7 @@
 		<div id="message" class="${message.type}">${message.message}</div>
 	</c:if>
 
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>${labelRestaurants}</th>

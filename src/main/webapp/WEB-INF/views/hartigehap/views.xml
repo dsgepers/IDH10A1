@@ -2,19 +2,19 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration
 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-	<definition extends="default" name="hartigehap/listrestaurants">
+	<definition extends="defaultv2" name="hartigehap/listrestaurants">
 		<put-attribute name="body" value="/WEB-INF/views/hartigehap/listrestaurants.jspx" />
 	</definition>
-	<definition extends="default" name="hartigehap/restaurant">
+	<definition extends="defaultv2" name="hartigehap/restaurant">
 		<put-attribute name="body" value="/WEB-INF/views/hartigehap/restaurant.jspx" />
 	</definition>
-	<definition extends="default" name="hartigehap/diningtable">
+	<definition extends="defaultv2" name="hartigehap/diningtable">
 		<put-attribute name="body" value="/WEB-INF/views/hartigehap/diningtable.jspx" />
 	</definition>
-	<definition extends="default" name="hartigehap/kitchen">
+	<definition extends="defaultv2" name="hartigehap/kitchen">
 		<put-attribute name="body" value="/WEB-INF/views/hartigehap/kitchen.jspx" />
 	</definition>
-	<definition extends="default" name="hartigehap/waiter">
+	<definition extends="defaultv2" name="hartigehap/waiter">
 		<put-attribute name="body" value="/WEB-INF/views/hartigehap/waiter.jspx" />
 	</definition>
 	<definition extends="default" name="hartigehap/listcustomers">
@@ -25,5 +25,11 @@
 	</definition>
 	<definition extends="default" name="hartigehap/editcustomer">
 		<put-attribute name="body" value="/WEB-INF/views/hartigehap/editcustomer.jspx" />
+	</definition>
+	<definition extends="defaultv2" name="reservations/index">
+		<put-attribute name="body" value="/WEB-INF/views/hartigehap/reservations/index.jspx" />
+	</definition>
+	<definition extends="defaultv2" name="reservations/new">
+		<put-attribute name="body" value="/WEB-INF/views/hartigehap/reservations/new.jspx" />
 	</definition>
 </tiles-definitions>

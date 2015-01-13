@@ -36,20 +36,21 @@
 
 
 	<c:if test="${not empty message}">
-		<div id="message" class="${message.type}">${message.message}</div>
+		<div id="message" class="alert alert-warning ${message.type}">${message.message}</div>
 	</c:if>
 
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>${labelCurrentOrder}</th>
-				<th><spring:url var="submitOrderUrl"
+				<th>Hoeveelheid</th>
+				<th style="width:100px;"><spring:url var="submitOrderUrl"
 						value="/diningTables/${diningTable.id}" /> <form:form
 						name="submitOrderForm" action="${submitOrderUrl}" method="put">
 						<input type="hidden" name="event" value="submitOrder" />
 						<table>
 							<tr>
-								<td><input type="submit" value="${labelSubmitOrderButton}" /></td>
+								<td><input type="submit" value="${labelSubmitOrderButton}" class="btn btn-primary btn-sm" /></td>
 							</tr>
 						</table>
 					</form:form></th>
@@ -59,24 +60,25 @@
 			<c:forEach items="${diningTable.currentBill.currentOrder.orderItems}"
 				var="orderItem">
 				<tr>
-					<td>${orderItem.menuItem.id} (${orderItem.quantity}x)</td>
+					<td>${orderItem.menuItem.id}</td>
+					<td>${orderItem.quantity}x</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
 
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>${labelCurrentBill}</th>
-				<th><spring:url var="submitBillUrl"
+				<th style="width:100px;"><spring:url var="submitBillUrl"
 						value="/diningTables/${diningTable.id}" /> <form:form
 						name="submitBillForm" action="${submitBillUrl}" method="put">
 						<input type="hidden" name="event" value="submitBill" />
 						<table>
 							<tr>
-								<td><input type="submit" value="${labelSubmitBillButton}" /></td>
+								<td><input type="submit" class="btn btn-warning btn-sm" value="${labelSubmitBillButton}" /></td>
 							</tr>
 						</table>
 					</form:form></th>
@@ -103,14 +105,14 @@
 		</ul>
 		<c:forEach items="${restaurant.menu.foodCategories}"
 			var="foodCategory">
-			<div id="tabs-${foodCategory.id}">
+			<div id="tabs-${foodCategory.id}" >
 				<c:forEach items="${foodCategory.menuItems}" var="menuItem">
 					<spring:url var="imageUrl"
 						value="/resources/images/${menuItem.imageFileName}" />
-					<div id="menuitem">
+					<div id="menuitem" style="display:inline-block; width:120px;padding:0 10px;">
 						<div>${menuItem.id}</div>
 						<div>
-							<img id="menuitemimg" src="${imageUrl}" />
+							<img class="thumbnail" style="width:100px;height:100px;" id="menuitemimg" src="${imageUrl}" />
 						</div>
 						${labelPrice} ${menuItem.price} ${labelCurrency}
 						<spring:url var="addOrderItemUrl"
@@ -118,25 +120,15 @@
 						<form:form name="addOrderItemForm" action="${addOrderItemUrl}"
 							method="post">
 							<input type="hidden" name="menuItemName" value="${menuItem.id}" />
-							<table>
-								<tr>
-									<td><input type="submit" value="${labelAddButton}" /></td>
-								</tr>
-							</table>
+							<input type="submit" class="btn btn-primary btn-block btn-xs" value="${labelAddButton}" style="margin-bottom:10px;" />
 						</form:form>
 						<spring:url var="deleteOrderItemUrl"
 							value="/diningTables/${diningTable.id}/menuItems/${menuItem.id}" />
 						<form:form name="deleteOrderItemForm"
-							action="${deleteOrderItemUrl}" method="delete">
-							<table>
-								<tr>
-									<td><input type="submit" value="${labelRemoveButton}" /></td>
-								</tr>
-							</table>
+							action="${deleteOrderItemUrl}" method="delete"><input type="submit" class="btn btn-danger btn-block btn-xs" value="${labelRemoveButton}" />
 						</form:form>
 					</div>
 				</c:forEach>
-
 			</div>
 		</c:forEach>
 	</div>
