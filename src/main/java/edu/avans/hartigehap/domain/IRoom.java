@@ -37,7 +37,7 @@ public abstract class IRoom extends DomainObject {
 	public IRoom(String id, int price)
 	{
 		this.price = price;
-//		this.id = id; 
+//		this.id = id;
 		
 	}
 	
