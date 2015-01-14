@@ -1,6 +1,7 @@
 package edu.avans.hartigehap.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
@@ -22,12 +23,21 @@ import lombok.Setter;
 public abstract class IRoom extends DomainObject {
 	private static final long serialVersionUID = 1L;
 	
+	// JPA is case sensitive: the corresponding column name will be in small
+	// caps "price"
+	private int price;
+	// natural id (so no auto generation needed)
+//	@Id
+//	private String id;
+	
 	public IRoom(){
 		
 	}
 	
-	public IRoom(String id, int cost)
+	public IRoom(String id, int price)
 	{
+		this.price = price;
+//		this.id = id;
 		
 	}
 	

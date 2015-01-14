@@ -17,16 +17,23 @@ public class MenuConference extends Addition {
 	private static final long serialVersionUID = 1L;
 
 	
-	@Override
-	public int cost() {
-		// TODO Auto-generated method stub
-		return 0;
+	public MenuConference(){
+		
 	}
 
-	@Override
+	public MenuConference(IRoom iroom, int price){
+		super(iroom);
+		iroom.setPrice(price);
+		
+	}
+	
+	public int cost() {
+		return getPrice() + getIroom().cost();
+	}
+
+
 	public String description() {
-		// TODO Auto-generated method stub
-		return null;
+		return getIroom().description() + ", " + "MenuConference";
 	}
 
 }
