@@ -8,8 +8,9 @@
 	<jsp:output omit-xml-declaration="yes" />
 
 	<spring:message code="label_restaurant" var="labelRestaurant" />
+	<spring:url var="newReservation" value="/reservations/new" />
 
-	<a href="#" class="btn btn-primary" style="float:right;"><spring:message code="label_reservation_new" /></a>
+	<a href="${newReservation}" class="btn btn-primary" style="float:right;"><spring:message code="label_reservation_new" /></a>
 	<h1>${labelRestaurant} ${restaurant.id}</h1>
 
 	<h3><spring:message code="label_reservation_header" /></h3>
