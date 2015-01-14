@@ -10,7 +10,7 @@ public class Morning extends IPeriod {
 	private DateTime date;
 	
 	public Morning (DateTime date) {
-		this.date = date;
+		this.date = date.withTime(8, 0, 0, 0);
 	}
 	
 	@Override

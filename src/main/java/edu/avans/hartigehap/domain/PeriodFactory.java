@@ -17,6 +17,7 @@ public class PeriodFactory {
 		
 		boolean firstDay = true;
 		boolean lastDay = false;
+		DateTime reservationDate = start;
 		for ( int i = reservedDays; i >= 0; i--) {
 			if (i == 0) 
 				lastDay = true;
@@ -26,45 +27,45 @@ public class PeriodFactory {
 				firstDay = false;
 				
 				if (isMorning(startHour)) {
-					periods.add(new Morning(start));
+					periods.add(new Morning(reservationDate));
 					if (oneDayReservation) {
 						if (isEvening(endHour)) {
-							periods.add(new Afternoon(start));
-							periods.add(new Evening(start));
+							periods.add(new Afternoon(reservationDate));
+							periods.add(new Evening(reservationDate));
 						} else if (isAfternoon(endHour)) {
-							periods.add(new Afternoon(start));
+							periods.add(new Afternoon(reservationDate));
 						}
 					}
 				} else if (isAfternoon(startHour)) {
-					periods.add(new Afternoon(start));
+					periods.add(new Afternoon(reservationDate));
 					if (oneDayReservation) {
 						if (isEvening(endHour)) {
-							periods.add(new Evening(start));
+							periods.add(new Evening(reservationDate));
 						}
 					}
 				} else if (isEvening(startHour)) {
-					periods.add(new Evening(start));
+					periods.add(new Evening(reservationDate));
 				}
 			}
 			else if (lastDay) {
 				if (isMorning(endHour)) {
-					periods.add(new Morning(start));
+					periods.add(new Morning(reservationDate));
 				} else if (isAfternoon(endHour)) {
-					periods.add(new Morning(start));
-					periods.add(new Afternoon(start));
+					periods.add(new Morning(reservationDate));
+					periods.add(new Afternoon(reservationDate));
 				} else if (isEvening(endHour)) {
-					periods.add(new Morning(start));
-					periods.add(new Afternoon(start));
-					periods.add(new Evening(start));
+					periods.add(new Morning(reservationDate));
+					periods.add(new Afternoon(reservationDate));
+					periods.add(new Evening(reservationDate));
 				}
 				
 			} else {
 				//normal days
-				//TODO: 'start' datetime veranderen naar juiste datum waarde (in alle new aanroepen!)
-				periods.add(new Morning(start));
-				periods.add(new Afternoon(start));
-				periods.add(new Evening(start));
+				periods.add(new Morning(reservationDate));
+				periods.add(new Afternoon(reservationDate));
+				periods.add(new Evening(reservationDate));
 			}
+			reservationDate = reservationDate.plusDays(1);
 		}
 		
 		return periods;
