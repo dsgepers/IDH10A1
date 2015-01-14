@@ -10,7 +10,7 @@ public class Evening extends IPeriod {
 	private DateTime date;
 	
 	public Evening (DateTime date) {
-		this.date = date;
+		this.date = date.withTime(18, 0, 0, 0);
 	}
 	
 	@Override
