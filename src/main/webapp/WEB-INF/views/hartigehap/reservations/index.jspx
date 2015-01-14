@@ -9,10 +9,10 @@
 
 	<spring:message code="label_restaurant" var="labelRestaurant" />
 
-	<a href="#" class="btn btn-primary" style="float:right;">Nieuwe reservering</a>
+	<a href="#" class="btn btn-primary" style="float:right;"><spring:message code="label_reservation_new" /></a>
 	<h1>${labelRestaurant} ${restaurant.id}</h1>
 
-	<h3>Reserveringen</h3>
+	<h3><spring:message code="label_reservation_header" /></h3>
 
 	<c:if test="${not empty message}">
 		<div id="message" class="${message.type}">${message.message}</div>
@@ -21,10 +21,10 @@
 	<table class="table">
 		<thead>
 		<tr>
-			<th>Naam</th>
-			<th>Zaal</th>
-			<th>Opties</th>
-			<th>Prijs</th>
+			<th><spring:message code="label_reservation_table_name" /></th>
+			<th><spring:message code="label_reservation_table_room" /></th>
+			<th><spring:message code="label_reservation_table_options" /></th>
+			<th><spring:message code="label_reservation_table_price" /></th>
 		</tr>
 		</thead>
 		<tbody>
