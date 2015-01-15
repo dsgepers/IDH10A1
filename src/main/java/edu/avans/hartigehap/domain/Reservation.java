@@ -6,11 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
+@Table(name = "RESERVATION")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 @Getter @Setter
 @ToString(callSuper=true, includeFieldNames=true, of= {})
@@ -31,6 +35,15 @@ public class Reservation extends DomainObject {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="STATUS_ID")
 	private IReservationStatus status;
+
+	@NotEmpty(message = "{validation.reservation.name.NotEmpty.message}")
+	private String name;
+
+	@Range(min=1, max=9999, message = "{validation.reservation.groupSize.Range.message}")
+	private Integer groupSize;
+
+	@NotEmpty(message = "{validation.reservation.description.NotEmpty.message}")
+	private String description;
 
 	public void addPeriod(IPeriod period)
 	{

@@ -3,6 +3,7 @@
 	 xmlns:c="http://java.sun.com/jsp/jstl/core"
 	 xmlns:joda="http://www.joda.org/joda/time/tags" version="2.0"
 	 xmlns:spring="http://www.springframework.org/tags"
+	 xmlns:form="http://www.springframework.org/tags/form"
 	 xmlns:sec="http://www.springframework.org/security/tags">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
@@ -17,66 +18,54 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<form class="form-horizontal" role="form">
+			<form class="form-horizontal" role="form" method="post">
 				<!-- Form Name -->
 				<legend>Nieuwe reservering</legend>
 
 				<!-- Text input-->
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="textinput">Room</label>
+					<label class="col-sm-2 control-label" for="textinput">Customer</label>
 					<div class="col-sm-10">
-						<select class="form-control">
-							<option>Zaal 1</option>
-							<option>Zaal 2</option>
-							<option>Zaal 3</option>
-						</select>
-					</div>
-				</div>
-
-				<!-- Text input-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label" for="textinput">Voornaam</label>
-					<div class="col-sm-10">
-						<input type="text" placeholder="Voornaam" class="form-control" />
+						<form:select  path="reservation.customer" class="form-control">
+							<c:forEach items="${customers}" var="customer">
+								<form:option value="${customer.id}">${customer.firstName} ${customer.lastName}</form:option>
+							</c:forEach>
+						</form:select>
 					</div>
 				</div>
 				<!-- Text input-->
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="textinput">Achternaam</label>
+					<label class="col-sm-2 control-label" for="textinput">Name</label>
 					<div class="col-sm-10">
-						<input type="text" placeholder="Achternaam" class="form-control" />
-					</div>
-				</div>
-				<!-- Text input-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label" for="textinput">Geboortedatum</label>
-					<div class="col-sm-10">
-						<input type="text" placeholder="Geboortedatum" class="form-control" />
+						<form:input path="reservation.name" placeholder="Name" class="form-control" />
 					</div>
 				</div>
 				<!-- Text input-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="textinput">Groepsgrootte</label>
 					<div class="col-sm-10">
-						<input type="text" placeholder="Groepsgrootte" class="form-control" />
+						<form:input path="reservation.groupSize" placeholder="Groepsgrootte" class="form-control" />
+					</div>
+				</div>
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="textinput">Start datum / tijd</label>
+					<div class="col-sm-10">
+						<input type="datetime" name="startDateTime" placeholder="Start datum/tijd" class="form-control" />
+					</div>
+				</div>
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="textinput">Eind datum / tijd</label>
+					<div class="col-sm-10">
+						<input type="datetime" name="endDateTime" placeholder="Eind datum/tijd" class="form-control" />
 					</div>
 				</div>
 				<!-- Text input-->
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="textinput">Beschrijving</label>
 					<div class="col-sm-10">
-						<input type="text" placeholder="Beschrijving" class="form-control" />
-					</div>
-				</div>
-				<!-- Text input-->
-				<div class="form-group">
-					<label class="col-sm-2 control-label" for="textinput">Opties</label>
-					<div class="col-sm-10">
-
-						<select class="form-control" multiple="multiple">
-							<option>Wifi</option>
-							<option>Beamer</option>
-						</select>
+						<form:input path="reservation.description" placeholder="Description" class="form-control" />
 					</div>
 				</div>
 

@@ -23,18 +23,25 @@
 		<thead>
 		<tr>
 			<th><spring:message code="label_reservation_table_name" /></th>
+			<th><spring:message code="label_reservation_table_description" /></th>
+			<th><spring:message code="label_reservation_table_person_name" /></th>
 			<th><spring:message code="label_reservation_table_room" /></th>
 			<th><spring:message code="label_reservation_table_options" /></th>
 			<th><spring:message code="label_reservation_table_price" /></th>
 		</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${restaurant.diningTables}" var="diningTable">
-			<spring:url var="showTable" value="/diningTables/${diningTable.id}" />
+		<c:forEach items="${reservations}" var="reservation">
 			<tr>
-				<td><a href="${showTable}">${labelDiningTable} ${diningTable.tableNr}</a></td>
+				<td><a href="#">${reservation.name}</a></td>
+				<td>${reservation.description}</td>
+				<td>${reservation.customer.firstName} ${reservation.customer.lastName}</td>
+				<td></td>
+				<td></td>
 			</tr>
 		</c:forEach>
 		</tbody>
 	</table>
+	<spring:url var="reservationSize" value="${reservations.size()}" />
+	${reservationSize}
 </div>
