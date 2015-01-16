@@ -20,15 +20,14 @@ import lombok.Setter;
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 @Getter @Setter
 
-public abstract class IRoom extends DomainObject {
+public abstract class IRoom extends DomainObjectNaturalId {
 	private static final long serialVersionUID = 1L;
 	
 	// JPA is case sensitive: the corresponding column name will be in small
 	// caps "price"
 	private int price;
-	// natural id (so no auto generation needed)
-//	@Id
-//	private String id;
+
+
 	
 	public IRoom(){
 		
@@ -36,8 +35,9 @@ public abstract class IRoom extends DomainObject {
 	
 	public IRoom(String id, int price)
 	{
+		super(id);
 		this.price = price;
-//		this.id = id;
+
 		
 	}
 	

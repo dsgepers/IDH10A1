@@ -34,8 +34,7 @@ public class Room extends IRoom {
 
 	public String description() {
 
-		return null;
-//				getId();
+		return getId();
 	}
 
 }
