@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.Days;
 
 public class PeriodFactory {
 
-	public List<IPeriod> buildPeriod(DateTime start, DateTime end) {
+	public List<IPeriod> buildPeriod(DateTime start, DateTime end, Reservation reservation) {
 
 		List<IPeriod> periods = new ArrayList<IPeriod>();
 		int reservedDays = Days.daysBetween(start.withTimeAtStartOfDay(), end.withTimeAtStartOfDay() ).getDays();
@@ -23,47 +24,47 @@ public class PeriodFactory {
 				lastDay = true;
 			
 			if (firstDay) {
-				boolean oneDayReservation = start.dayOfYear() == end.dayOfYear() && start.year() == end.year();
 				firstDay = false;
+				boolean oneDayReservation = start.dayOfYear().get() == end.dayOfYear().get() && start.year().get() == end.year().get();
 				
 				if (isMorning(startHour)) {
-					periods.add(new Morning(reservationDate));
+					periods.add(new Morning(reservationDate, reservation));
 					if (oneDayReservation) {
 						if (isEvening(endHour)) {
-							periods.add(new Afternoon(reservationDate));
-							periods.add(new Evening(reservationDate));
+							periods.add(new Afternoon(reservationDate, reservation));
+							periods.add(new Evening(reservationDate, reservation));
 						} else if (isAfternoon(endHour)) {
-							periods.add(new Afternoon(reservationDate));
+							periods.add(new Afternoon(reservationDate, reservation));
 						}
 					}
 				} else if (isAfternoon(startHour)) {
-					periods.add(new Afternoon(reservationDate));
+					periods.add(new Afternoon(reservationDate, reservation));
 					if (oneDayReservation) {
 						if (isEvening(endHour)) {
-							periods.add(new Evening(reservationDate));
+							periods.add(new Evening(reservationDate, reservation));
 						}
 					}
 				} else if (isEvening(startHour)) {
-					periods.add(new Evening(reservationDate));
+					periods.add(new Evening(reservationDate, reservation));
 				}
 			}
 			else if (lastDay) {
 				if (isMorning(endHour)) {
-					periods.add(new Morning(reservationDate));
+					periods.add(new Morning(reservationDate, reservation));
 				} else if (isAfternoon(endHour)) {
-					periods.add(new Morning(reservationDate));
-					periods.add(new Afternoon(reservationDate));
+					periods.add(new Morning(reservationDate, reservation));
+					periods.add(new Afternoon(reservationDate, reservation));
 				} else if (isEvening(endHour)) {
-					periods.add(new Morning(reservationDate));
-					periods.add(new Afternoon(reservationDate));
-					periods.add(new Evening(reservationDate));
+					periods.add(new Morning(reservationDate, reservation));
+					periods.add(new Afternoon(reservationDate, reservation));
+					periods.add(new Evening(reservationDate, reservation));
 				}
 				
 			} else {
 				//normal days
-				periods.add(new Morning(reservationDate));
-				periods.add(new Afternoon(reservationDate));
-				periods.add(new Evening(reservationDate));
+				periods.add(new Morning(reservationDate, reservation));
+				periods.add(new Afternoon(reservationDate, reservation));
+				periods.add(new Evening(reservationDate, reservation));
 			}
 			reservationDate = reservationDate.plusDays(1);
 		}

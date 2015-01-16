@@ -1,21 +1,25 @@
 package edu.avans.hartigehap.domain;
 
-import java.util.List;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.joda.time.DateTime;
 
-@Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class IPeriod {
-	private static final long serialVersionUID = 1L;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-	@Id
-	private Long id;
+@Entity
+@Table(name = "PERIOD") 
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+public abstract class IPeriod extends DomainObject{
+	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne
-	private Reservation RESERVATION;
+	@ManyToOne()
+	protected Reservation reservation;
 	
 	public abstract void setDate(DateTime date);
 	

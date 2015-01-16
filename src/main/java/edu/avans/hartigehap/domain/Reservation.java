@@ -20,8 +20,9 @@ import java.util.List;
 @ToString(callSuper=true, includeFieldNames=true, of= {})
 @NoArgsConstructor
 public class Reservation extends DomainObject {
+	private static final long serialVersionUID = 1L;
 
-	@OneToMany(mappedBy="RESERVATION")
+	@OneToMany(cascade = {CascadeType.ALL}, mappedBy="reservation")
 	private List<IPeriod> periods;
 
 	@ManyToOne(fetch=FetchType.LAZY)

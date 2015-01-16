@@ -54,19 +54,19 @@ public class ReservationController {
                                    @RequestParam("endDateTime") String endDateTime) {
 
         Reservation reservation = new Reservation();
+     
         Customer customer = this.customerService.findById(customerId);
         reservation.setCustomer(customer);
         reservation.setName(name);
         reservation.setDescription(description);
         reservation.setGroupSize(groupSize);
 
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
-        DateTime startTime = formatter.parseDateTime(startDateTime);
-        DateTime endTime = formatter.parseDateTime(endDateTime);
-
+        DateTime startTime = DateTime.parse(startDateTime);
+        DateTime endTime = DateTime.parse(endDateTime);
+        
         PeriodFactory periodFactory = new PeriodFactory();
 
-        List<IPeriod> periods = periodFactory.buildPeriod(startTime, endTime);
+        List<IPeriod> periods = periodFactory.buildPeriod(startTime, endTime, reservation);
         reservation.setPeriods(periods);
 
         this.reservationService.save(reservation);

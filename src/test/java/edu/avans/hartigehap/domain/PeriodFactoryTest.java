@@ -9,6 +9,7 @@ public class PeriodFactoryTest {
 
 	PeriodFactory periodFactory = new PeriodFactory();
 	List<IPeriod> oneDayPeriod;
+	Reservation reservation = new Reservation();
 	
 	
 	DateTime startTime = DateTime.now().minusDays(3);
@@ -21,7 +22,7 @@ public class PeriodFactoryTest {
 		DateTime startTime = DateTime.now().minusDays(3);
 		DateTime endTime = DateTime.now();
 		
-		threeDayPeriod = periodFactory.buildPeriod(startTime, endTime);
+		threeDayPeriod = periodFactory.buildPeriod(startTime, endTime, reservation);
 		
 		
 	}
@@ -32,7 +33,7 @@ public class PeriodFactoryTest {
 		DateTime startTime = new DateTime(2015,1,13,8,0);
 		DateTime endTime = new DateTime(2015,1,13,12,0);
 		
-		oneDayPeriod = periodFactory.buildPeriod(startTime, endTime);
+		oneDayPeriod = periodFactory.buildPeriod(startTime, endTime, reservation);
 	}
 
 }
