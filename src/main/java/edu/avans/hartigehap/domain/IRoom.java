@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Created by panda on 18-12-14.
+ * Created by panda on 18-12-14. DIT IS EEN TEST
  */
 
 @Entity
