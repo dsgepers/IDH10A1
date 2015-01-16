@@ -12,8 +12,7 @@ public class Morning extends IPeriod {
 
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
 	private LocalDate date; 
-	//@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	//private DateTime date;
+	
 	
 	public Morning (DateTime date, Reservation reservation) {
 		this.date = date.toLocalDate();

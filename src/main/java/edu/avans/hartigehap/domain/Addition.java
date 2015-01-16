@@ -15,7 +15,7 @@ public abstract class Addition extends IRoom {
 	}
 	
 	public Addition(IRoom iroom){
-		super(iroom.getId() + "#", iroom.getPrice() );
+		super(iroom.getDescription() , iroom.getPrice() );
 		setIroom(iroom);
 	}
 	

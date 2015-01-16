@@ -21,20 +21,19 @@ public class Room extends IRoom {
 		
 	}
 	
-	public Room(String id, int price){
-		super(id, price);
+	public Room(String description, int price){
+		super(description, price);
+		
 	}
 	
 
 	public int cost() {
-
 		return getPrice();
 	}
 
 
 	public String description() {
-
-		return getId();
+		return getDescription();
 	}
 
 }

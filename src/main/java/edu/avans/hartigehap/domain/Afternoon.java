@@ -9,12 +9,9 @@ import org.joda.time.LocalDate;
 @Entity
 public class Afternoon extends IPeriod {
 	private static final long serialVersionUID = 1L;
-
 	
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-	private LocalDate date; 
-	//@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	//private DateTime date;
+	private LocalDate date; 	
 	
 	
 	public Afternoon (DateTime date, Reservation reservation) {
