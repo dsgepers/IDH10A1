@@ -4,6 +4,6 @@ import edu.avans.hartigehap.domain.IReservationStatus;
 import edu.avans.hartigehap.domain.Reservation;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface StatusRepository extends PagingAndSortingRepository<IReservationStatus, Long> {
+public interface ConceptStatusRepository extends PagingAndSortingRepository<IReservationStatus, Long> {
 
 }

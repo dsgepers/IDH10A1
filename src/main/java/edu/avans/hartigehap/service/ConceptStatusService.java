@@ -5,7 +5,7 @@ import edu.avans.hartigehap.domain.Reservation;
 
 import java.util.List;
 
-public interface ReservationStatusService {
+public interface ConceptStatusService {
 	List<IReservationStatus> findAll();
 	IReservationStatus save(IReservationStatus status);
 }

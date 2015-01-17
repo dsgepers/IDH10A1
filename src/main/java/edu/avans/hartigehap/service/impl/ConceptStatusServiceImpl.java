@@ -2,9 +2,8 @@ package edu.avans.hartigehap.service.impl;
 
 import com.google.common.collect.Lists;
 import edu.avans.hartigehap.domain.IReservationStatus;
-import edu.avans.hartigehap.domain.Reservation;
-import edu.avans.hartigehap.repository.StatusRepository;
-import edu.avans.hartigehap.service.ReservationStatusService;
+import edu.avans.hartigehap.repository.ConceptStatusRepository;
+import edu.avans.hartigehap.service.ConceptStatusService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +17,11 @@ import java.util.List;
 @Service("reservationStatusService")
 @Repository
 @Transactional
-public class ReservationStatusServiceImpl implements ReservationStatusService {
-	final Logger logger = LoggerFactory.getLogger(ReservationStatusServiceImpl.class);
+public class ConceptStatusServiceImpl implements ConceptStatusService {
+	final Logger logger = LoggerFactory.getLogger(ConceptStatusServiceImpl.class);
 
 	@Autowired
-	private StatusRepository statusRepository;
+	private ConceptStatusRepository statusRepository;
 
 	@Transactional(readOnly=true)
 	public List<IReservationStatus> findAll() {

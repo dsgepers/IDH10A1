@@ -29,6 +29,8 @@ public class RestaurantPopulatorServiceImpl implements RestaurantPopulatorServic
 	private CustomerRepository customerRepository;
 	@Autowired
 	private ReservationStatusServiceImpl statusService;
+	@Autowired
+	private RoomRepository roomRepository;
 	
 	private List<Meal> meals = new ArrayList<Meal>();
 	private List<FoodCategory> foodCats = new ArrayList<FoodCategory>();
@@ -73,6 +75,13 @@ public class RestaurantPopulatorServiceImpl implements RestaurantPopulatorServic
 		createCustomer("Dennis", "Schepers", new DateTime(), 1, "description", photo);
 		createCustomer("johnny", "Vos", new DateTime(), 1, "description", photo);
 		createCustomer("Wesley", "Vandamme", new DateTime(), 1, "description", photo);
+		
+		roomRepository.save(new Room("testRoom1", 100));
+		roomRepository.save(new Room("testRoom2", 200));
+		roomRepository.save(new Room("testRoom3", 150));
+		roomRepository.save(new Room("testRoom4", 75));
+		roomRepository.save(new Room("testRoom5", 125));
+		
 
 	}
 
