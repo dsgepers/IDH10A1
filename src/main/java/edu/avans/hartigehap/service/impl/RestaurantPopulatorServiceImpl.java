@@ -68,9 +68,9 @@ public class RestaurantPopulatorServiceImpl implements RestaurantPopulatorServic
 			Arrays.<FoodCategory>asList(new FoodCategory[]{foodCats.get(6)}));
 		
 		byte[] photo = new byte[]{127,-128,0};
-		createCustomer("piet", "bakker", new DateTime(), 1, "description", photo);
-		createCustomer("piet", "bakker", new DateTime(), 1, "description", photo);
-		createCustomer("piet", "bakker", new DateTime(), 1, "description", photo);
+		createCustomer("Dennis", "Schepers", new DateTime(), 1, "description", photo);
+		createCustomer("johnny", "Vos", new DateTime(), 1, "description", photo);
+		createCustomer("Wesley", "Vandamme", new DateTime(), 1, "description", photo);
 
 	}
 

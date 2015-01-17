@@ -1,24 +1,32 @@
 package edu.avans.hartigehap.domain;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class RoomFactory {
 	
-	public List<IRoom> buildRoom(String description, int price, Reservation reservation ){
+	public IRoom buildRoom(List<String> additions) {
+		IRoom room = new Room("testRoom", 5);
 		
-		List<IRoom> rooms = new ArrayList<IRoom>();
-		
-		
-		if (beamer) {
-			rooms.add(new beamer(String description, int price));
-			
+		for (Iterator<String> i = additions.iterator(); i.hasNext(); ) {
+			switch(i.next()) {
+			case "WIFI":
+				room = new Wifi(room, 3);
+				break;
+			case "BEAMER":
+				room = new Beamer(room, 3);
+				break;
+			case "MENU":
+				room = new MenuConference(room, 3);
+				break;
+			case "DECORATION":
+				room = new Decoration(room, 3);
+				break;				
+			}
 		}
 		
-		else if (wifi) {
-			rooms.add(new wifi(String description, int price));
-		}
-		return null;
+		
+		return room;
 		
 	}
 
