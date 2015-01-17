@@ -27,8 +27,8 @@ public class MenuConference extends Addition {
 		
 	}
 	
-	public int cost() {
-		return getPrice() + getIroom().cost();
+	public int GetTotal() {
+		return getPrice() + getIroom().GetTotal();
 	}
 
 

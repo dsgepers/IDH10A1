@@ -44,7 +44,7 @@ public abstract class IRoom extends DomainObject {
 		
 	}
 	
-	public abstract int cost();
+	public abstract int GetTotal();
 	public abstract String description();
 	
 }

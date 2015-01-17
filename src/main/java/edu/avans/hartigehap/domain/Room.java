@@ -27,7 +27,7 @@ public class Room extends IRoom {
 	}
 	
 
-	public int cost() {
+	public int GetTotal() {
 		return getPrice();
 	}
 
