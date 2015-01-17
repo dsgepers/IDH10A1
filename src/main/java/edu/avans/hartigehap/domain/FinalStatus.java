@@ -1,10 +1,19 @@
 package edu.avans.hartigehap.domain;
 
+import edu.avans.hartigehap.repository.ConceptStatusRepository;
+import edu.avans.hartigehap.repository.FinalStatusRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue("CONCEPT")
+@DiscriminatorValue("FINAL")
 public class FinalStatus extends IReservationStatus {
+
+    @Autowired
+    @Transient
+    private static FinalStatusRepository finalStatusRepository;
+
     @Transient
     private Reservation reservation;
 
@@ -13,13 +22,17 @@ public class FinalStatus extends IReservationStatus {
         this.reservation = reservation;
     }
 
+    public static IReservationStatus getStatus() {
+        return FinalStatus.finalStatusRepository.findAll().iterator().next();
+    }
+
     @Override
-    public void makeFinal() {
+    public void makeFinal(Reservation reservation) {
 
     }
 
     @Override
-    public void makeConcept() {
+    public void makeConcept(Reservation reservation) {
 
     }
 }

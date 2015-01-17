@@ -1,6 +1,8 @@
 package edu.avans.hartigehap.service.impl;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import edu.avans.hartigehap.domain.ConceptStatus;
 import edu.avans.hartigehap.domain.IReservationStatus;
 import edu.avans.hartigehap.repository.ConceptStatusRepository;
 import edu.avans.hartigehap.service.ConceptStatusService;
@@ -14,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-@Service("reservationStatusService")
+@Service("conceptStatusService")
 @Repository
 @Transactional
 public class ConceptStatusServiceImpl implements ConceptStatusService {
@@ -24,12 +26,12 @@ public class ConceptStatusServiceImpl implements ConceptStatusService {
 	private ConceptStatusRepository statusRepository;
 
 	@Transactional(readOnly=true)
-	public List<IReservationStatus> findAll() {
+	public List<ConceptStatus> findAll() {
 		return Lists.newArrayList(statusRepository.findAll());
 	}
 
 	@Override
-	public IReservationStatus save(IReservationStatus status) {
+	public ConceptStatus save(ConceptStatus status) {
 		return this.statusRepository.save(status);
 	}
 }

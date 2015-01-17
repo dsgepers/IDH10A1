@@ -28,9 +28,11 @@ public class RestaurantPopulatorServiceImpl implements RestaurantPopulatorServic
 	@Autowired
 	private CustomerRepository customerRepository;
 	@Autowired
-	private ReservationStatusServiceImpl statusService;
-	@Autowired
 	private RoomRepository roomRepository;
+	@Autowired
+	private ConceptStatusRepository conceptStatusRepository;
+	@Autowired
+	private FinalStatusRepository finalStatusRepository;
 	
 	private List<Meal> meals = new ArrayList<Meal>();
 	private List<FoodCategory> foodCats = new ArrayList<FoodCategory>();
@@ -75,6 +77,9 @@ public class RestaurantPopulatorServiceImpl implements RestaurantPopulatorServic
 		createCustomer("Dennis", "Schepers", new DateTime(), 1, "description", photo);
 		createCustomer("johnny", "Vos", new DateTime(), 1, "description", photo);
 		createCustomer("Wesley", "Vandamme", new DateTime(), 1, "description", photo);
+
+		this.conceptStatusRepository.save(new ConceptStatus());
+		this.finalStatusRepository.save(new FinalStatus());
 		
 		roomRepository.save(new Room("testRoom1", 100));
 		roomRepository.save(new Room("testRoom2", 200));
@@ -113,9 +118,6 @@ public class RestaurantPopulatorServiceImpl implements RestaurantPopulatorServic
 		Customer customer = new Customer(firstName, lastName, birthDate, partySize, description, photo); 
 		customers.add(customer);
 		customerRepository.save(customer);
-
-		ConceptStatus conceptStatus = new ConceptStatus();
-		FinalStatus finalStatus = new FinalStatus();
 	}
 	
 	private void createDiningTables(int numberOfTables, Restaurant restaurant) {

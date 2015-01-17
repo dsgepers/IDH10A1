@@ -39,5 +39,10 @@ public class ReservationServiceImpl implements ReservationService {
 	public Reservation save(Reservation reservation) {
 		return this.reservationRepository.save(reservation);
 	}
+
+	@Override
+	public Reservation findById(Long id) {
+		return this.reservationRepository.findById(id);
+	}
 }
 

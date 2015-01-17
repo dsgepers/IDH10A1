@@ -1,9 +1,9 @@
 package edu.avans.hartigehap.service.impl;
 
 import com.google.common.collect.Lists;
-import edu.avans.hartigehap.domain.ConceptStatus;
-import edu.avans.hartigehap.repository.ConceptStatusRepository;
-import edu.avans.hartigehap.service.ConceptStatusService;
+import edu.avans.hartigehap.domain.FinalStatus;
+import edu.avans.hartigehap.repository.FinalStatusRepository;
+import edu.avans.hartigehap.service.FinalStatusService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,23 +13,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
-@Service("conceptStatusService")
+@Service("finalStatusService")
 @Repository
 @Transactional
-public class FinalStatusServiceImpl implements ConceptStatusService {
+public class FinalStatusServiceImpl implements FinalStatusService {
 	final Logger logger = LoggerFactory.getLogger(FinalStatusServiceImpl.class);
 
 	@Autowired
-	private ConceptStatusRepository statusRepository;
+	private FinalStatusRepository statusRepository;
 
 	@Transactional(readOnly=true)
-	public List<ConceptStatus> findAll() {
+	public List<FinalStatus> findAll() {
 		return Lists.newArrayList(statusRepository.findAll());
 	}
 
 	@Override
-	public ConceptStatus save(ConceptStatus status) {
+	public FinalStatus save(FinalStatus status) {
 		return this.statusRepository.save(status);
 	}
 }
