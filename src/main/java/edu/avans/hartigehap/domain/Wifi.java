@@ -21,18 +21,24 @@ public class Wifi extends Addition {
 	}
 
 	public Wifi(IRoom iroom, int price){
-		super(iroom);
+		super(iroom, VatOther.getInstance());
 		iroom.setPrice(price);
 		
 	}
 	
-	public int cost() {
-		return getPrice() + getIroom().cost();
+	public double getTotal() {
+		return getPrice() + getIroom().getTotal();
 	}
 
 
 	public String description() {
 		return getIroom().description() + ", " + "Wifi";
+	}
+	
+	@Override
+	public double getTotalWithVAT() {
+		double price = getPrice();
+		return price + getVat().calculateVat(price) + getIroom().getTotal();
 	}
 
 }

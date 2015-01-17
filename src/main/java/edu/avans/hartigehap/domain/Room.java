@@ -22,18 +22,24 @@ public class Room extends IRoom {
 	}
 	
 	public Room(String description, int price){
-		super(description, price);
+		super(description, price, VatOther.getInstance());
 		
 	}
 	
 
-	public int cost() {
+	public double getTotal() {
 		return getPrice();
 	}
 
 
 	public String description() {
 		return getDescription();
+	}
+	
+	@Override
+	public double getTotalWithVAT() {
+		double price = getPrice();
+		return price + getVat().calculateVat(price);
 	}
 
 }

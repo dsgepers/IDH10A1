@@ -11,10 +11,10 @@ public class RoomFactory {
 	@Autowired
 	private RoomService roomService;
 	
-	public IRoom buildRoom(Long roomID, List<String> additions) {
+	public IRoom buildRoom(IRoom room, List<String> additions) {
 		//TODO: change code to controller
 		//IRoom room = roomService.findById(roomID);
-		IRoom room = new Room("test", 100);
+		//IRoom room = new Room("test", 100);
 		
 		for (Iterator<String> i = additions.iterator(); i.hasNext(); ) {
 			switch(i.next()) {
@@ -32,8 +32,7 @@ public class RoomFactory {
 				break;				
 			}
 		}
-		
-		
+
 		return room;
 		
 	}

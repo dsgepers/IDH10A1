@@ -14,11 +14,11 @@ public abstract class Addition extends IRoom {
 		
 	}
 	
-	public Addition(IRoom iroom){
-		super(iroom.getDescription() , iroom.getPrice() );
+	public Addition(IRoom iroom, Vat vat){
+		super(iroom.getDescription(), iroom.getPrice(), vat);
 		setIroom(iroom);
 	}
 	
-	@OneToOne
+	@OneToOne(cascade = javax.persistence.CascadeType.ALL)
 	public IRoom iroom;
 }

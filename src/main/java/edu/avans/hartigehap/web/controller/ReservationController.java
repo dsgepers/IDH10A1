@@ -6,6 +6,10 @@ import edu.avans.hartigehap.service.CustomerService;
 import edu.avans.hartigehap.service.ReservationService;
 import edu.avans.hartigehap.service.impl.ConceptStatusServiceImpl;
 import edu.avans.hartigehap.web.form.Message;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -18,6 +22,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.avans.hartigehap.domain.Customer;
+import edu.avans.hartigehap.domain.IPeriod;
+import edu.avans.hartigehap.domain.IRoom;
+import edu.avans.hartigehap.domain.PeriodFactory;
+import edu.avans.hartigehap.domain.Reservation;
+import edu.avans.hartigehap.domain.RoomFactory;
+import edu.avans.hartigehap.service.CustomerService;
+import edu.avans.hartigehap.service.ReservationService;
+import edu.avans.hartigehap.service.RoomService;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,6 +42,10 @@ public class ReservationController {
 
     @Autowired
     private CustomerService customerService;
+    
+    @Autowired
+    private RoomService roomService;
+    
 
     @Autowired
     private ConceptStatusService conceptStatusService;
@@ -45,9 +62,11 @@ public class ReservationController {
     @RequestMapping(value = "/reservations/new", method = RequestMethod.GET)
     public String newReservation(Model uiModel) {
         List<Customer> customers = this.customerService.findAll();
+        List<IRoom> rooms = this.roomService.findAll();
 
         uiModel.addAttribute("reservation", new Reservation());
         uiModel.addAttribute("customers", customers);
+        uiModel.addAttribute("rooms", rooms);
         return "reservations/new";
     }
 
@@ -77,7 +96,9 @@ public class ReservationController {
                                    @RequestParam("groupSize") Integer groupSize,
                                    @RequestParam("description") String description,
                                    @RequestParam("startDateTime") String startDateTime,
-                                   @RequestParam("endDateTime") String endDateTime) {
+                                   @RequestParam("endDateTime") String endDateTime,
+                                   @RequestParam("room") Long roomId,
+                                   @RequestParam(value="additions", required = false) String[] additions){
 
         Reservation reservation = new Reservation();
 
@@ -91,8 +112,13 @@ public class ReservationController {
         DateTime startTime = formatter.parseDateTime(startDateTime);
         DateTime endTime = formatter.parseDateTime(endDateTime);
 
+        RoomFactory roomFactory = new RoomFactory();
+        IRoom room = roomFactory.buildRoom(roomService.findById(roomId), new ArrayList<String>(Arrays.asList(additions)));
+        roomService.save(room);
+        reservation.setRoom(room);
+       
+        
         PeriodFactory periodFactory = new PeriodFactory();
-
         List<IPeriod> periods = periodFactory.buildPeriod(startTime, endTime, reservation);
         reservation.setPeriods(periods);
 

@@ -87,6 +87,11 @@ public class RestaurantPopulatorServiceImpl implements RestaurantPopulatorServic
 		roomRepository.save(new Room("testRoom4", 75));
 		roomRepository.save(new Room("testRoom5", 125));
 		
+		//VatOther.getInstance();
+		//VatFood.getInstance();
+		//VatNone.getInstance();
+		
+		
 
 	}
 
