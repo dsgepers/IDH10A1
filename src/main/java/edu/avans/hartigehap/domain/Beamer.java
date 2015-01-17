@@ -20,18 +20,24 @@ public class Beamer extends Addition {
 	}
 
 	public Beamer(IRoom iroom, int price){
-		super(iroom);
+		super(iroom, VatOther.getInstance());
 		iroom.setPrice(price);
 		
 	}
 	
-	public int GetTotal() {
-		return getPrice() + getIroom().GetTotal();
+	public double getTotal() {
+		return getPrice() + getIroom().getTotal();
 	}
 
 
 	public String description() {
 		return getIroom().description() + ", " + "Beamer";
+	}
+
+	@Override
+	public double getTotalWithVAT() {
+		double price = getPrice();
+		return price + getVat().calculateVat(price) + getIroom().getTotal();
 	}
 
 }

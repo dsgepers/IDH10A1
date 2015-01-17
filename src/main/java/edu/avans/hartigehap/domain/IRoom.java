@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,20 +32,25 @@ public abstract class IRoom extends DomainObject {
 	
 	@OneToMany(mappedBy="room")
 	private List<Reservation> reservations;
+	
+	@ManyToOne()
+	private Vat vat;
 
 	
 	public IRoom(){
 		
 	}
 	
-	public IRoom(String description, int price)
+	public IRoom(String description, int price, Vat vat)
 	{
 		this.price = price;
 		this.description = description;
+		this.vat = vat;
 		
 	}
 	
-	public abstract int GetTotal();
+	public abstract double getTotal();
+	public abstract double getTotalWithVAT();
 	public abstract String description();
 	
 }

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @DiscriminatorValue("OTHER")
 public class VatOther extends Vat {
 
-    private Double vat = 0.06;
+    private Double vat = 0.21;
 
     protected static Vat _instance = new VatOther();
 

@@ -81,6 +81,7 @@ public class ReservationController {
         IRoom room = roomFactory.buildRoom(roomService.findById(roomId), new ArrayList<String>(Arrays.asList(additions)));
         roomService.save(room);
         reservation.setRoom(room);
+       
         
         PeriodFactory periodFactory = new PeriodFactory();
         List<IPeriod> periods = periodFactory.buildPeriod(startTime, endTime, reservation);

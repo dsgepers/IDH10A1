@@ -21,18 +21,24 @@ public class Decoration extends Addition {
 	}
 
 	public Decoration(IRoom iroom, int price){
-		super(iroom);
+		super(iroom, VatOther.getInstance());
 		iroom.setPrice(price);
 		
 	}
 	
-	public int GetTotal() {
-		return getPrice() + getIroom().GetTotal();
+	public double getTotal() {
+		return getPrice() + getIroom().getTotal();
 	}
 
 
 	public String description() {
 		return getIroom().description() + ", " + "Decoration";
+	}
+
+	@Override
+	public double getTotalWithVAT() {
+		double price = getPrice();
+		return price + getVat().calculateVat(price) + getIroom().getTotal();
 	}
 
 }

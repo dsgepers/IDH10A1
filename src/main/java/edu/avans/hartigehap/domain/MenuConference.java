@@ -22,18 +22,23 @@ public class MenuConference extends Addition {
 	}
 
 	public MenuConference(IRoom iroom, int price){
-		super(iroom);
+		super(iroom, VatFood.getInstance());
 		iroom.setPrice(price);
 		
 	}
 	
-	public int GetTotal() {
-		return getPrice() + getIroom().GetTotal();
+	public double getTotal() {
+		return getPrice() + getIroom().getTotal();
 	}
 
 
 	public String description() {
 		return getIroom().description() + ", " + "MenuConference";
 	}
-
+	
+	@Override
+	public double getTotalWithVAT() {
+		double price = getPrice();
+		return price + getVat().calculateVat(price) + getIroom().getTotal();
+	}
 }
