@@ -1,7 +1,11 @@
 package edu.avans.hartigehap.service;
 
-import edu.avans.hartigehap.domain.Room;
+import java.util.List;
+
+import edu.avans.hartigehap.domain.IRoom;
 
 public interface RoomService {
-	Room findById(Long id);
+	IRoom findById(Long id);
+	List<IRoom> findAll();
+	IRoom save(IRoom room);
 }

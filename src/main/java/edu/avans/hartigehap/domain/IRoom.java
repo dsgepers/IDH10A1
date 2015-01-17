@@ -1,20 +1,18 @@
 package edu.avans.hartigehap.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Created by panda on 18-12-14. DIT IS EEN TEST
- */
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "Rooms") 
@@ -30,7 +28,9 @@ public abstract class IRoom extends DomainObject {
 	private int price;
 	
 	private String description;
-
+	
+	@OneToMany(mappedBy="room")
+	private List<Reservation> reservations;
 
 	
 	public IRoom(){

@@ -19,6 +19,6 @@ public abstract class Addition extends IRoom {
 		setIroom(iroom);
 	}
 	
-	@OneToOne
+	@OneToOne(cascade = javax.persistence.CascadeType.ALL)
 	public IRoom iroom;
 }

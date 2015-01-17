@@ -15,7 +15,11 @@ public class RoomFactoryTest {
 	@Test
 	public void test1additions(){
 		additions.add("WIFI");
-		room = roomFactory.buildRoom(1L, additions);
+		additions.add("MENU");
+		additions.add("DECORATION");
+		additions.add("WIFI");
+		
+		room = roomFactory.buildRoom(room, additions);
 	}
 	
 	@Test
