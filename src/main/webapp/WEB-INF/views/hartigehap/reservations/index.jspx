@@ -9,6 +9,7 @@
 
 	<spring:message code="label_restaurant" var="labelRestaurant" />
 	<spring:url var="newReservation" value="/reservations/new" />
+	<spring:url var="rootUrl" value="/" />
 
 	<a href="${newReservation}" class="btn btn-primary" style="float:right;"><spring:message code="label_reservation_new" /></a>
 	<h1>${labelRestaurant} ${restaurant.id}</h1>
@@ -40,7 +41,7 @@
 				<td>${reservation.customer.firstName} ${reservation.customer.lastName}</td>
 				<td></td>
 				<td></td>
-				<td><a href="#" class="btn btn-primary btn-xs"><spring:message code="label_reservation_table_make_final_status" /></a></td>
+				<td><a href="${rootUrl}reservations/finalize/${reservation.id}" class="btn btn-primary btn-xs"><spring:message code="label_reservation_table_make_final_status" /></a></td>
 			</tr>
 		</c:forEach>
 		</tbody>

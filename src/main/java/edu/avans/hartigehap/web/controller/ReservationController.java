@@ -86,6 +86,15 @@ public class ReservationController {
         }
     }
 
+
+    @RequestMapping(value = "/reservation/{reservationId}", method = RequestMethod.GET)
+    public String showReservation(Model uiModel, @PathVariable("reservationId") Long reservationId) {
+        Reservation reservation = this.reservationService.findById(reservationId);
+
+        uiModel.addAttribute("reservation", reservation);
+        return "reservations/show";
+    }
+
     @RequestMapping(value = "/reservations/new", method = RequestMethod.POST)
     public String storeReservation(@RequestParam("customer") Long customerId,
                                    @RequestParam("name") String name,
@@ -104,7 +113,7 @@ public class ReservationController {
         reservation.setDescription(description);
         reservation.setGroupSize(groupSize);
 
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm");
         DateTime startTime = formatter.parseDateTime(startDateTime);
         DateTime endTime = formatter.parseDateTime(endDateTime);
 
