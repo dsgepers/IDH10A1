@@ -1,8 +1,5 @@
 package edu.avans.hartigehap.web.controller;
 
-import edu.avans.hartigehap.domain.*;
-import edu.avans.hartigehap.service.*;
-import edu.avans.hartigehap.web.form.Message;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,12 +15,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.avans.hartigehap.domain.ConceptStatus;
 import edu.avans.hartigehap.domain.Customer;
 import edu.avans.hartigehap.domain.IPeriod;
+import edu.avans.hartigehap.domain.IReservationStatus;
 import edu.avans.hartigehap.domain.IRoom;
+import edu.avans.hartigehap.domain.InvalidReservationStatusActionException;
 import edu.avans.hartigehap.domain.PeriodFactory;
 import edu.avans.hartigehap.domain.Reservation;
 import edu.avans.hartigehap.domain.RoomFactory;
+import edu.avans.hartigehap.service.ConceptStatusService;
+import edu.avans.hartigehap.service.CustomerService;
+import edu.avans.hartigehap.service.FinalStatusService;
+import edu.avans.hartigehap.service.ReservationService;
+import edu.avans.hartigehap.service.RoomService;
+import edu.avans.hartigehap.web.form.Message;
 
 @Controller
 //@PreAuthorize("hasRole('ROLE_EMPLOYEE')")
@@ -118,7 +124,11 @@ public class ReservationController {
         DateTime endTime = formatter.parseDateTime(endDateTime);
 
         RoomFactory roomFactory = new RoomFactory();
-        IRoom room = roomFactory.buildRoom(roomService.findById(roomId), new ArrayList<String>(Arrays.asList(additions)));
+        List<String> roomAdditions = new ArrayList<String>();
+        if (additions != null)
+        	roomAdditions.addAll(Arrays.asList(additions));
+        
+        IRoom room = roomFactory.buildRoom(roomService.findById(roomId), roomAdditions);
         roomService.save(room);
         reservation.setRoom(room);
        
