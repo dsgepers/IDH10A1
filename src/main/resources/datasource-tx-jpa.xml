@@ -15,7 +15,10 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="emf" />
 	</bean>
-
+	<bean class="edu.avans.hartigehap.domain.ConceptStatus" scope="prototype">
+		<property name="finalStatusService" ref="finalStatusService"/>
+		<property name="reservationService" ref="reservationService"/>
+	</bean>
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="*" rollback-for="edu.avans.hartigehap.domain.StateException"/>

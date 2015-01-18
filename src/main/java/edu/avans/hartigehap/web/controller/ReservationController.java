@@ -1,10 +1,7 @@
 package edu.avans.hartigehap.web.controller;
 
 import edu.avans.hartigehap.domain.*;
-import edu.avans.hartigehap.service.ConceptStatusService;
-import edu.avans.hartigehap.service.CustomerService;
-import edu.avans.hartigehap.service.ReservationService;
-import edu.avans.hartigehap.service.impl.ConceptStatusServiceImpl;
+import edu.avans.hartigehap.service.*;
 import edu.avans.hartigehap.web.form.Message;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +11,6 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,17 +24,15 @@ import edu.avans.hartigehap.domain.IRoom;
 import edu.avans.hartigehap.domain.PeriodFactory;
 import edu.avans.hartigehap.domain.Reservation;
 import edu.avans.hartigehap.domain.RoomFactory;
-import edu.avans.hartigehap.service.CustomerService;
-import edu.avans.hartigehap.service.ReservationService;
-import edu.avans.hartigehap.service.RoomService;
-import java.util.List;
-import java.util.Locale;
 
 @Controller
 //@PreAuthorize("hasRole('ROLE_EMPLOYEE')")
 public class ReservationController {
     @Autowired
     private ReservationService reservationService;
+
+    @Autowired
+    private FinalStatusService finalStatusService;
 
     @Autowired
     private CustomerService customerService;
@@ -81,6 +75,8 @@ public class ReservationController {
 
         try {
             IReservationStatus status = reservation.getStatus();
+            status.setFinalStatusService(this.finalStatusService);
+            status.setReservationService(this.reservationService);
             status.makeFinal(reservation);
             uiModel.addAttribute("message", new Message("success", "De status is veranderd"));
             return this.listReservations(uiModel);
