@@ -21,7 +21,7 @@ public class ConceptStatus extends IReservationStatus {
     }
 
     @Override
-    public void makeConcept(Reservation reservation) {
-
+    public void makeConcept(Reservation reservation) throws InvalidReservationStatusActionException{
+        throw new InvalidReservationStatusActionException("Status is already concept.");
     }
 }

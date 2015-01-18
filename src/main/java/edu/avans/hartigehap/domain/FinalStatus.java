@@ -27,12 +27,12 @@ public class FinalStatus extends IReservationStatus {
     }
 
     @Override
-    public void makeFinal(Reservation reservation) {
-
+    public void makeFinal(Reservation reservation) throws InvalidReservationStatusActionException{
+        throw new InvalidReservationStatusActionException("Already finalized.");
     }
 
     @Override
-    public void makeConcept(Reservation reservation) {
-
+    public void makeConcept(Reservation reservation) throws InvalidReservationStatusActionException{
+        throw new InvalidReservationStatusActionException("Not allowed to be set to concept when final.");
     }
 }
