@@ -37,4 +37,9 @@ public class RoomServiceImpl implements RoomService {
 		return this.roomRepository.save(room);
 	}
 
+	@Override
+	public List<IRoom> findByType(String type) {
+		return Lists.newArrayList(roomRepository.findBytype(type));
+	}
+
 }

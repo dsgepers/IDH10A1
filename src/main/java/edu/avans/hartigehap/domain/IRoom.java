@@ -2,10 +2,8 @@ package edu.avans.hartigehap.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,18 +16,19 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "Rooms") 
-@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy= InheritanceType.JOINED)
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 @Getter @Setter
 
 public abstract class IRoom extends DomainObject {
 	private static final long serialVersionUID = 1L;
 	
-	// JPA is case sensitive: the corresponding column name will be in small
-	// caps "price"
 	private int price;
 	
 	private String description;
+	
+    @Column(name = "DTYPE", insertable = false, updatable = false)
+    private String type;
 	
 	@OneToMany(mappedBy="room")
 	private List<Reservation> reservations;

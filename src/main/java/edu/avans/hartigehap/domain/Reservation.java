@@ -37,7 +37,7 @@ public class Reservation extends DomainObject {
 	@JoinColumn(name="CUSTOMER_ID")
 	private Customer customer;
 
-	@ManyToOne()
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="ROOM_ID")
 	private IRoom room;
 

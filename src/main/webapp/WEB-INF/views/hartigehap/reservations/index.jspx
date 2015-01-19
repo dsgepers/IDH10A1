@@ -28,7 +28,9 @@
 			<th><spring:message code="label_reservation_table_person_name" /></th>
 			<th><spring:message code="label_reservation_table_room" /></th>
 			<th><spring:message code="label_reservation_table_price" /></th>
+			<th><spring:message code="label_reservation_table_pricevat" /></th>
 			<th><spring:message code="label_reservation_table_options" /></th>
+			<th><spring:message code="label_reservation_table_changestatus" /></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -38,8 +40,10 @@
 				<td>${reservation.status.type}</td>
 				<td>${reservation.description}</td>
 				<td>${reservation.customer.firstName} ${reservation.customer.lastName}</td>
+				<td>${reservation.room.description }</td>
+				<td>${reservation.room.getTotal() }</td>
 				<td></td>
-				<td></td>
+				<td>${reservation.room.description() }</td>
 				<td><a href="${rootUrl}reservations/finalize/${reservation.id}" class="btn btn-primary btn-xs"><spring:message code="label_reservation_table_make_final_status" /></a></td>
 			</tr>
 		</c:forEach>

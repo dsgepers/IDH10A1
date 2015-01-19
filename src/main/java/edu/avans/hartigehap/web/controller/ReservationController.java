@@ -62,7 +62,7 @@ public class ReservationController {
     @RequestMapping(value = "/reservations/new", method = RequestMethod.GET)
     public String newReservation(Model uiModel) {
         List<Customer> customers = this.customerService.findAll();
-        List<IRoom> rooms = this.roomService.findAll();
+        List<IRoom> rooms = this.roomService.findByType("Room");
 
         uiModel.addAttribute("reservation", new Reservation());
         uiModel.addAttribute("customers", customers);
@@ -130,9 +130,9 @@ public class ReservationController {
         List<String> roomAdditions = new ArrayList<String>();
         if (additions != null)
         	roomAdditions.addAll(Arrays.asList(additions));
-        
         IRoom room = roomFactory.buildRoom(roomService.findById(roomId), roomAdditions);
-        roomService.save(room);
+        
+        //roomService.save(room);
         reservation.setRoom(room);
        
         

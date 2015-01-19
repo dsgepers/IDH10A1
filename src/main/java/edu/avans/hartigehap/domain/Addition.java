@@ -1,10 +1,13 @@
 package edu.avans.hartigehap.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter @Setter
 public abstract class Addition extends IRoom {
 
@@ -20,5 +23,6 @@ public abstract class Addition extends IRoom {
 	}
 	
 	@OneToOne(cascade = javax.persistence.CascadeType.ALL)
+	@JoinColumn(name="decorating")
 	public IRoom iroom;
 }
