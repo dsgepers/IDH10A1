@@ -42,7 +42,7 @@
 				<td>${reservation.customer.firstName} ${reservation.customer.lastName}</td>
 				<td>${reservation.room.description }</td>
 				<td>${reservation.room.getTotal() }</td>
-				<td></td>
+				<td><!-- ${reservation.room.getTotalWithVat()  --></td>
 				<td>${reservation.room.description() }</td>
 				<td><a href="${rootUrl}reservations/finalize/${reservation.id}" class="btn btn-primary btn-xs"><spring:message code="label_reservation_table_make_final_status" /></a></td>
 			</tr>

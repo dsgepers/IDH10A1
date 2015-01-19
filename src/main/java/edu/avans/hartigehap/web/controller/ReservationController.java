@@ -131,8 +131,6 @@ public class ReservationController {
         if (additions != null)
         	roomAdditions.addAll(Arrays.asList(additions));
         IRoom room = roomFactory.buildRoom(roomService.findById(roomId), roomAdditions);
-        
-        //roomService.save(room);
         reservation.setRoom(room);
        
         
