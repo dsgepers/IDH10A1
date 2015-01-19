@@ -4,13 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.joda.time.Days;
 
 public class PeriodFactory {
 
-	public List<IPeriod> buildPeriod(DateTime start, DateTime end, Reservation reservation) {
+    private static PeriodFactory _instance;
 
+    private PeriodFactory () {}
+
+    public static PeriodFactory getInstance () {
+        if (_instance == null) {
+        	_instance = new PeriodFactory();
+        }
+    	return _instance;
+    }
+	
+	public List<IPeriod> buildPeriod(DateTime start, DateTime end, Reservation reservation) {
 		List<IPeriod> periods = new ArrayList<IPeriod>();
 		int reservedDays = Days.daysBetween(start.withTimeAtStartOfDay(), end.withTimeAtStartOfDay() ).getDays();
 		int startHour = start.getHourOfDay();

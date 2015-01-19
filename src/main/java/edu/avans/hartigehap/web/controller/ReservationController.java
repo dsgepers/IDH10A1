@@ -96,9 +96,12 @@ public class ReservationController {
     @RequestMapping(value = "/reservation/{reservationId}", method = RequestMethod.GET)
     public String showReservation(Model uiModel, @PathVariable("reservationId") Long reservationId) {
         Reservation reservation = this.reservationService.findById(reservationId);
-
-        uiModel.addAttribute("reservation", reservation);
-        return "reservations/show";
+        if (reservation != null) {
+        	uiModel.addAttribute("reservation", reservation);
+        	return "reservations/show";
+        } else {
+        	return "reservations/index";
+        }
     }
 
     @RequestMapping(value = "/reservations/new", method = RequestMethod.POST)
@@ -123,7 +126,7 @@ public class ReservationController {
         DateTime startTime = formatter.parseDateTime(startDateTime);
         DateTime endTime = formatter.parseDateTime(endDateTime);
 
-        RoomFactory roomFactory = new RoomFactory();
+        RoomFactory roomFactory = RoomFactory.getInstance();
         List<String> roomAdditions = new ArrayList<String>();
         if (additions != null)
         	roomAdditions.addAll(Arrays.asList(additions));
@@ -133,7 +136,7 @@ public class ReservationController {
         reservation.setRoom(room);
        
         
-        PeriodFactory periodFactory = new PeriodFactory();
+        PeriodFactory periodFactory = PeriodFactory.getInstance();
         List<IPeriod> periods = periodFactory.buildPeriod(startTime, endTime, reservation);
         reservation.setPeriods(periods);
 

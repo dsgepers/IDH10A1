@@ -3,19 +3,20 @@ package edu.avans.hartigehap.domain;
 import java.util.Iterator;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import edu.avans.hartigehap.service.RoomService;
-
 public class RoomFactory {
-	@Autowired
-	private RoomService roomService;
 	
-	public IRoom buildRoom(IRoom room, List<String> additions) {
-		//TODO: change code to controller
-		//IRoom room = roomService.findById(roomID);
-		//IRoom room = new Room("test", 100);
-		
+    private static RoomFactory _instance;
+
+    private RoomFactory () {}
+
+    public static RoomFactory getInstance () {
+        if (_instance == null) {
+        	_instance = new RoomFactory();
+        }
+    	return _instance;
+    }
+	
+	public IRoom buildRoom(IRoom room, List<String> additions) {		
 		for (Iterator<String> i = additions.iterator(); i.hasNext(); ) {
 			switch(i.next()) {
 			case "WIFI":

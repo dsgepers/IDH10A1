@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class PeriodFactoryTest {
 
-	PeriodFactory periodFactory = new PeriodFactory();
+	PeriodFactory periodFactory = PeriodFactory.getInstance();
 	List<IPeriod> oneDayPeriod;
 	Reservation reservation = new Reservation();
 	
