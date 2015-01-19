@@ -33,7 +33,7 @@ public abstract class IRoom extends DomainObject {
 	@OneToMany(mappedBy="room")
 	private List<Reservation> reservations;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = javax.persistence.CascadeType.ALL)
 	private Vat vat;
 
 	
