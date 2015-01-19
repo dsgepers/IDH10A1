@@ -21,7 +21,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 @Getter @Setter
-
 public abstract class IRoom extends DomainObject {
 	private static final long serialVersionUID = 1L;
 	

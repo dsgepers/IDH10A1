@@ -15,13 +15,12 @@ public class Wifi extends Addition {
 
 	private static final long serialVersionUID = 1L;
 
-	
 	public Wifi(){
 		
 	}
 
 	public Wifi(IRoom iroom, int price){
-		super(iroom, VatOther.getInstance());
+		super(iroom, VatFactory.getInstance().getVat("OTHER"));
 		iroom.setPrice(price);
 		
 	}

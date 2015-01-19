@@ -21,7 +21,7 @@ public class Decoration extends Addition {
 	}
 
 	public Decoration(IRoom iroom, int price){
-		super(iroom, VatOther.getInstance());
+		super(iroom, VatFactory.getInstance().getVat("OTHER"));
 		iroom.setPrice(price);
 		
 	}
