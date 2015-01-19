@@ -17,10 +17,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 abstract public class Vat extends DomainObject {
-	private static final long serialVersionUID = 1L;
-
-	@OneToMany(mappedBy="vat")
-	private List<IRoom> rooms;
 
     public abstract Double calculateVat(Double price);
 }

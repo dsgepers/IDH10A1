@@ -2,13 +2,7 @@ package edu.avans.hartigehap.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +27,7 @@ public abstract class IRoom extends DomainObject {
 	@OneToMany(mappedBy="room")
 	private List<Reservation> reservations;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = javax.persistence.CascadeType.ALL)
 	private Vat vat;
 
 	
