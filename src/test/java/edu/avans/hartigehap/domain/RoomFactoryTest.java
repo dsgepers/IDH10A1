@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class RoomFactoryTest {
 	
-	RoomFactory roomFactory = new RoomFactory();
+	RoomFactory roomFactory = RoomFactory.getInstance();
 	List<String> additions = new ArrayList<String>();
 	IRoom room;
 	Reservation reservation = new Reservation();

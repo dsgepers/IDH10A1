@@ -32,4 +32,8 @@
 	<definition extends="defaultv2" name="reservations/new">
 		<put-attribute name="body" value="/WEB-INF/views/hartigehap/reservations/new.jspx" />
 	</definition>
+	<definition extends="defaultv2" name="reservations/show">
+		<put-attribute name="body" value="/WEB-INF/views/hartigehap/reservations/show.jspx" />
+	</definition>
+	
 </tiles-definitions>

@@ -7,14 +7,13 @@
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 
-	<spring:message code="label_restaurant" var="labelRestaurant" />
 	<spring:url var="newReservation" value="/reservations/new" />
 	<spring:url var="rootUrl" value="/" />
 
 	<a href="${newReservation}" class="btn btn-primary" style="float:right;"><spring:message code="label_reservation_new" /></a>
-	<h1>${labelRestaurant} ${restaurant.id}</h1>
+	<h1><spring:message code="label_reservation_header" /></h1>
 
-	<h3><spring:message code="label_reservation_header" /></h3>
+	<h3><spring:message code="label_reservation_subheader" /></h3>
 
 	<c:if test="${not empty message}">
 		<div class="alert alert-info alert-${message.type}" id="message">${message.message}</div>
@@ -35,7 +34,7 @@
 		<tbody>
 		<c:forEach items="${reservations}" var="reservation">
 			<tr>
-				<td><a href="#">${reservation.name}</a></td>
+				<td><a href="${rootUrl}reservation/${reservation.id}">${reservation.name}</a></td>
 				<td>${reservation.status.type}</td>
 				<td>${reservation.description}</td>
 				<td>${reservation.customer.firstName} ${reservation.customer.lastName}</td>
@@ -46,6 +45,4 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<spring:url var="reservationSize" value="${reservations.size()}" />
-	${reservationSize}
 </div>

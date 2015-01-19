@@ -8,9 +8,7 @@
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 
-	<spring:message code="label_restaurant" var="labelRestaurant" />
-
-	<h1>${labelRestaurant} ${restaurant.id}</h1>
+	<h1><spring:message code="label_reservation_header" /></h1>
 
 	<c:if test="${not empty message}">
 		<div id="message" class="${message.type}">${message.message}</div>
