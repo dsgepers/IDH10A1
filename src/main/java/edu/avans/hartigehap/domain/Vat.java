@@ -1,31 +1,22 @@
 package edu.avans.hartigehap.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Inheritance
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="VAT_TYPE")
 @Table(name="VAT")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+@Getter
+@Setter
 abstract public class Vat extends DomainObject {
-	private static final long serialVersionUID = 1L;
-
-	@OneToMany(mappedBy="vat")
-	private List<IRoom> rooms;
-	
-    protected static Vat _instance = null;
-
-    protected Vat () {}
-
-    public static Vat getInstance () {
-        return _instance;
-    }
 
     public abstract Double calculateVat(Double price);
-
 }
