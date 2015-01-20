@@ -16,7 +16,6 @@ public class HomePageLoginIT {
 
   public static String URL = "http://localhost:8080/hh";
 
-  @Test
   public void login() {
     WebDriver driver = BrowserUtils.getWebDriver();
     driver.get(URL);
