@@ -44,7 +44,7 @@ public class GmailExport implements ICalendarAdapter {
         sender.setHost("smtp.gmail.com");
         sender.setPort(587);
         sender.setUsername("tyranox@gmail.com");
-        sender.setPassword("!!C8aa83ad!!");
+        sender.setPassword("VERBODEN");
         sender.setJavaMailProperties(properties);
 
         SimpleMailMessage message = new SimpleMailMessage();
