@@ -20,13 +20,11 @@ public class Wifi extends Addition {
 	}
 
 	public Wifi(IRoom iroom, int price){
-		super(iroom, VatFactory.getInstance().getVat("OTHER"));
-		iroom.setPrice(price);
-		
+		super(iroom, price, VatFactory.getInstance().getVat("OTHER"));		
 	}
 	
 	public double getTotal() {
-		return getPrice() + getIroom().getTotal();
+		return getIroom().getTotal() + getPrice();
 	}
 
 

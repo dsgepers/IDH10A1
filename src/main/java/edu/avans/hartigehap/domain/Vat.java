@@ -1,13 +1,19 @@
 package edu.avans.hartigehap.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import java.util.List;
+
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
@@ -17,6 +23,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 abstract public class Vat extends DomainObject {
+	
+	@OneToMany(mappedBy = "vat")
+	private List<IRoom> rooms;
 
     public abstract Double calculateVat(Double price);
 }

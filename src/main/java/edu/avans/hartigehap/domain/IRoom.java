@@ -2,8 +2,10 @@ package edu.avans.hartigehap.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
@@ -12,6 +14,8 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -35,7 +39,7 @@ public abstract class IRoom extends DomainObject {
 	@OneToMany(mappedBy="room")
 	private List<Reservation> reservations;
 	
-	@ManyToOne(cascade = javax.persistence.CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Vat vat;
 
 	

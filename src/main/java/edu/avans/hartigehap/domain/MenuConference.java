@@ -22,9 +22,7 @@ public class MenuConference extends Addition {
 	}
 
 	public MenuConference(IRoom iroom, int price){
-		super(iroom, VatFactory.getInstance().getVat("FOOD"));
-		iroom.setPrice(price);
-		
+		super(iroom, price, VatFactory.getInstance().getVat("FOOD"));
 	}
 	
 	public double getTotal() {

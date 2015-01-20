@@ -22,7 +22,7 @@ public class Room extends IRoom {
 	}
 	
 	public Room(String description, int price){
-		super(description, price, VatFactory.getInstance().getVat("OTHER"));
+		super(description, price, /*VatFactory.getInstance().getVat("OTHER")*/ null);
 		
 	}
 	
