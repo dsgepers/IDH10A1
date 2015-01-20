@@ -11,6 +11,9 @@
 	<spring:url var="rootUrl" value="/" />
 
 	<a href="${newReservation}" class="btn btn-primary" style="float:right;"><spring:message code="label_reservation_new" /></a>
+	<c:if test="${reservations.size() > 0}">
+		<a href="${rootUrl}reservation/export" class="btn btn-primary" style="float:right;margin:right:10px;"><spring:message code="label_reservation_export" /></a>
+	</c:if>
 	<h1><spring:message code="label_reservation_header" /></h1>
 
 	<h3><spring:message code="label_reservation_subheader" /></h3>

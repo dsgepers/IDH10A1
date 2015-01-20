@@ -10,10 +10,8 @@ import org.joda.time.LocalDate;
 public class Afternoon extends IPeriod {
 	private static final long serialVersionUID = 1L;
 	
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-	private LocalDate date; 	
-	
-	
+	public Afternoon() {}
+
 	public Afternoon (DateTime date, Reservation reservation) {
 		this.date = date.toLocalDate();
 		this.reservation = reservation;

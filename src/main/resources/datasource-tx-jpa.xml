@@ -11,7 +11,6 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="emf" />
 	</bean>
@@ -53,7 +52,8 @@
 		base-package="edu.avans.hartigehap.repository"
 		entity-manager-factory-ref="emf"
 		transaction-manager-ref="transactionManager" />
-		
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"></bean>
 	<bean 
 		id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -65,6 +65,8 @@
 		<property name="maxActive" value="0" />
 		<property name="initialSize" value="50" />
 	</bean>
+	<bean id="googleExport" class="edu.avans.hartigehap.domain.GmailExport"></bean>
+
 
 	<beans profile="dev">
 		<jdbc:embedded-database id="dataSource" type="H2">

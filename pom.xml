@@ -42,6 +42,11 @@
       <artifactId>spring-webmvc</artifactId>
       <version>${org.springframework-version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>3.2.8.RELEASE</version>
+    </dependency>
 
     <!-- Dependencies for Spring Security -->
     <dependency>
@@ -49,6 +54,7 @@
       <artifactId>spring-security-core</artifactId>
       <version>${org.springframework.security-version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
@@ -258,6 +264,11 @@
 
 
     <!-- Dependencies for Service layer -->
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4.7</version>
+    </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.avans.hartigehap.domain.*;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -15,15 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.avans.hartigehap.domain.ConceptStatus;
-import edu.avans.hartigehap.domain.Customer;
-import edu.avans.hartigehap.domain.IPeriod;
-import edu.avans.hartigehap.domain.IReservationStatus;
-import edu.avans.hartigehap.domain.IRoom;
-import edu.avans.hartigehap.domain.InvalidReservationStatusActionException;
-import edu.avans.hartigehap.domain.PeriodFactory;
-import edu.avans.hartigehap.domain.Reservation;
-import edu.avans.hartigehap.domain.RoomFactory;
 import edu.avans.hartigehap.service.ConceptStatusService;
 import edu.avans.hartigehap.service.CustomerService;
 import edu.avans.hartigehap.service.FinalStatusService;
@@ -45,7 +37,9 @@ public class ReservationController {
     
     @Autowired
     private RoomService roomService;
-    
+
+    @Autowired
+    private GmailExport calendar;
 
     @Autowired
     private ConceptStatusService conceptStatusService;
@@ -145,5 +139,12 @@ public class ReservationController {
 
         this.reservationService.save(reservation);
         return "redirect:/reservations";
+    }
+
+    @RequestMapping(value = "/reservation/export", method = RequestMethod.GET)
+    public String showReservation(Model uiModel) {
+
+        calendar.sendPeriods();
+        return this.listReservations(uiModel);
     }
 }
