@@ -145,6 +145,7 @@ public class ReservationController {
     public String showReservation(Model uiModel) {
 
         calendar.sendPeriods();
+        uiModel.addAttribute("message", new Message("info", "Periods Exported"));
         return this.listReservations(uiModel);
     }
 }
