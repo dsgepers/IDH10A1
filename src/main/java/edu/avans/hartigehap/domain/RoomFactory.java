@@ -20,16 +20,16 @@ public class RoomFactory {
 		for (Iterator<String> i = additions.iterator(); i.hasNext(); ) {
 			switch(i.next()) {
 			case "WIFI":
-				room = new Wifi(room, 3);
+				room = new Wifi(room, 10);
 				break;
 			case "BEAMER":
-				room = new Beamer(room, 3);
+				room = new Beamer(room, 20);
 				break;
 			case "MENU":
-				room = new MenuConference(room, 3);
+				room = new MenuConference(room, 30);
 				break;
 			case "DECORATION":
-				room = new Decoration(room, 3);
+				room = new Decoration(room, 40);
 				break;				
 			}
 		}

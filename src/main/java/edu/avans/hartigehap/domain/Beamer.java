@@ -20,9 +20,7 @@ public class Beamer extends Addition {
 	}
 
 	public Beamer(IRoom iroom, int price){
-		super(iroom, VatFactory.getInstance().getVat("OTHER"));
-		iroom.setPrice(price);
-		
+		super(iroom, price, VatFactory.getInstance().getVat("OTHER"));	
 	}
 	
 	public double getTotal() {

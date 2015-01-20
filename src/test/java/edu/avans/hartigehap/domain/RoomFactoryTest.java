@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import edu.avans.hartigehap.service.RoomService;
 
 public class RoomFactoryTest {
 	
+	@Autowired
+	private RoomService roomService;
+	
 	RoomFactory roomFactory = RoomFactory.getInstance();
 	List<String> additions = new ArrayList<String>();
-	IRoom room;
+	
 	Reservation reservation = new Reservation();
 
 	public void test1additions(){
@@ -17,6 +23,7 @@ public class RoomFactoryTest {
 		additions.add("MENU");
 		additions.add("DECORATION");
 		additions.add("WIFI");
+		IRoom room = new Room("test", 1);
 		
 		room = roomFactory.buildRoom(room, additions);
 	}
