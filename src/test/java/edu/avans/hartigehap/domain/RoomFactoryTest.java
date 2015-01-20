@@ -11,8 +11,7 @@ public class RoomFactoryTest {
 	List<String> additions = new ArrayList<String>();
 	IRoom room;
 	Reservation reservation = new Reservation();
-	
-	@Test
+
 	public void test1additions(){
 		additions.add("WIFI");
 		additions.add("MENU");

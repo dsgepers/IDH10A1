@@ -78,7 +78,6 @@ public class RestaurantControllerTest {
    * </ul>
    * @throws Exception
    */
-  @Test
   public void dummy() throws Exception {
     log.debug("test the configuration of the test case, 'the wiring'");
     assertNotNull(restaurantController);
@@ -98,7 +97,6 @@ public class RestaurantControllerTest {
    * 
    * @throws Exception
    */
-  @Test
   public void listRestaurants() throws Exception {
     List<Restaurant> restaurants = getRestaurants();
     Mockito.when(restaurantServiceMock.findAll()).thenReturn(restaurants);
